@@ -8,9 +8,11 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "test:verbose": "vitest --reporter verbose"
+    "test:verbose": "vitest --reporter verbose",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
+    "@vitest/coverage-v8": "^1.4.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.6",
     "vitest": "^1.4.0"

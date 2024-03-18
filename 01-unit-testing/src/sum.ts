@@ -1,4 +1,4 @@
-// add a and b together and return sum 🤯
+// add numbers together and return sum 🤯
 export const add = (...numbers: number[]) => {
 	/*
 	// 🥴
@@ -12,4 +12,9 @@ export const add = (...numbers: number[]) => {
 
 	// 🤩
 	return numbers.reduce( (acc, num) => acc + num, 0 );
+}
+
+// subtract numbers from each other and return sum 🤯
+export const sub = (...numbers: number[]) => {
+	return numbers.reduce( (acc, num) => acc - num, 0 );
 }
