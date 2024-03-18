@@ -1,5 +1,5 @@
 // add a and b together and return sum 🤯
-export const sum = (...numbers: number[]) => {
+export const add = (...numbers: number[]) => {
 	/*
 	// 🥴
 	let sumOfNumbers = 0;
