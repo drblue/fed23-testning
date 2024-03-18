@@ -15,6 +15,6 @@ export const add = (...numbers: number[]) => {
 }
 
 // subtract numbers from each other and return sum 🤯
-export const sub = (...numbers: number[]) => {
-	return numbers.reduce( (acc, num) => acc - num, 0 );
+export const sub = (initialValue: number, ...numbers: number[]) => {
+	return numbers.reduce( (acc, num) => acc - num, initialValue );
 }
