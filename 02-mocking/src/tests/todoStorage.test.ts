@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import mockedLocalStorage from "../mocks/mockedLocalStorage";
 import { getTodos, saveTodos } from "../utils/todoStorage";
 import { Todo } from "../types/Todo";
@@ -27,16 +27,26 @@ afterEach(() => {
 
 describe("get todos", () => {
 	it("returns empty list of todos", () => {
-		const todos = getTodos();
+		// 🕵🏻‍♂️ register a spy on "getItem"
+		const getItemSpy = vi.spyOn(globalThis.localStorage, "getItem");
+		const todos = getTodos(); // getItem
 
+		// 👀
+		expect(getItemSpy).toHaveBeenCalledOnce();
+		// expect(getItemSpy).toHaveBeenCalledTimes(1); // same as above
 		expect(todos.length).toBe(0);
 	});
 });
 
 describe("save todos", () => {
 	it("can save a todo", () => {
+		// register a spy on setItem
+		const setItemSpy = vi.spyOn(globalThis.localStorage, "setItem");
+
 		// save TODO and make sure its ok
 		const res = saveTodos([ TODO ]);
+
+		expect(setItemSpy).toHaveBeenCalledOnce();
 		expect(res.success).toBe(true);
 	});
 
