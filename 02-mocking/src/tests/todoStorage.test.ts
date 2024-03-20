@@ -34,11 +34,19 @@ describe("get todos", () => {
 });
 
 describe("save todos", () => {
-	it.todo("can save a todo", () => {
+	it("can save a todo", () => {
 		// save TODO and make sure its ok
+		const res = saveTodos([ TODO ]);
+		expect(res.success).toBe(true);
 	});
 
-	it.todo("can save a todo and then retrieve it", () => {
+	it("can save a todo and then retrieve it", () => {
 		// save TODO and then make sure we can retrieve it
+		const res = saveTodos([ TODO ]);
+		expect(res.success).toBe(true);
+
+		const todos = getTodos();
+		// expect(todos).toEqual([ TODO ]);
+		expect(todos).toContainEqual(TODO);
 	});
 });
