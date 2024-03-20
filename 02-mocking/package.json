@@ -1,0 +1,26 @@
+{
+  "name": "02-mocking",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:verbose": "vitest --reporter verbose",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@types/domexception": "^4.0.3",
+    "@vitest/coverage-v8": "^1.4.0",
+    "domexception": "^4.0.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6",
+    "vitest": "^1.4.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "sass": "^1.72.0"
+  }
+}
