@@ -1,10 +1,9 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import mockedLocalStorage from "../mocks/mockedLocalStorage";
+/**
+ * @vitest-environment happy-dom
+ */
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { getTodos, saveTodos } from "../utils/todoStorage";
 import { Todo } from "../types/Todo";
-
-// Reference to the original localStorage
-let originalLocalStorage: any;
 
 const TODO: Todo = {
 	id: 1,
@@ -12,30 +11,9 @@ const TODO: Todo = {
 	completed: false,
 }
 
-beforeEach(() => {
-	// Save a reference to the original localStorage before each test
-	originalLocalStorage = globalThis.localStorage;
-
-	// Replace localStorage with the mocked version
-	globalThis.localStorage = mockedLocalStorage();
-});
-
+// 🧹 Reset the environment so tests aren't dependent on each other
 afterEach(() => {
-	// Restore localStorage to the original version
-	globalThis.localStorage = originalLocalStorage;
-});
-
-describe("get todos", () => {
-	it("returns empty list of todos", () => {
-		// 🕵🏻‍♂️ register a spy on "getItem"
-		const getItemSpy = vi.spyOn(globalThis.localStorage, "getItem");
-		const todos = getTodos(); // getItem
-
-		// 👀
-		expect(getItemSpy).toHaveBeenCalledOnce();
-		// expect(getItemSpy).toHaveBeenCalledTimes(1); // same as above
-		expect(todos.length).toBe(0);
-	});
+	globalThis.localStorage.clear();
 });
 
 describe("save todos", () => {
@@ -58,5 +36,18 @@ describe("save todos", () => {
 		const todos = getTodos();
 		// expect(todos).toEqual([ TODO ]);
 		expect(todos).toContainEqual(TODO);
+	});
+});
+
+describe("get todos", () => {
+	it("returns empty list of todos", () => {
+		// 🕵🏻‍♂️ register a spy on "getItem"
+		const getItemSpy = vi.spyOn(globalThis.localStorage, "getItem");
+		const todos = getTodos(); // getItem
+
+		// 👀
+		expect(getItemSpy).toHaveBeenCalledOnce();
+		// expect(getItemSpy).toHaveBeenCalledTimes(1); // same as above
+		expect(todos.length).toBe(0);
 	});
 });

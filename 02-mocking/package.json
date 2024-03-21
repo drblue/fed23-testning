@@ -15,6 +15,7 @@
     "@types/domexception": "^4.0.3",
     "@vitest/coverage-v8": "^1.4.0",
     "domexception": "^4.0.0",
+    "happy-dom": "^14.2.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.6",
     "vitest": "^1.4.0"
