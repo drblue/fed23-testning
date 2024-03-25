@@ -32,12 +32,35 @@ describe("TodoAPI", () => {
 		});
 	});
 
-	it.todo("should create and then get the todo");
+	it("should create and then get the todo", async () => {
+		// create a new todo
+		const createdTodo = await TodoAPI.createTodo(newTodo);
+
+		// try to get the new todo
+		const todo = await TodoAPI.getTodo(createdTodo.id);
+
+		/*
+		expect(todo.id).toBe(createdTodo.id);
+		expect(todo.title).toBe(createdTodo.title);
+		expect(todo.completed).toBe(createdTodo.completed);
+		*/
+
+		/*
+		expect(todo).toMatchObject({
+			id: createdTodo.id,
+			title: createdTodo.title,
+			completed: createdTodo.completed,
+		});
+		*/
+
+		// expect both todos to have the same keys + values
+		expect(todo).toStrictEqual(createdTodo);
+	});
 
 	it.todo("should create and then find the todo among all todos");
 
 	it.todo("should create and then update the todo");
 
-	it.todo("should create and then delete the todo");
+	it.todo("should create and then delete the todo and verify that the todo actually was deleted");
 
 });
