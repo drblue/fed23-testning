@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach, afterAll } from "vitest";
 import * as TodoAPI from "../services/TodoAPI";
 import { TodoData } from "../types/Todo";
 
@@ -6,6 +6,20 @@ const newTodo: TodoData = {
 	title: "Test todo",
 	completed: false,
 }
+
+// Misa good cleaner 🧹
+const deleteAllTodos = async () => {
+	// get all todos and then delete them one by one 😩
+	const todos = await TodoAPI.getTodos();
+
+	// delete them one by one
+	for (let i = 0; i < todos.length; i++) {
+		await TodoAPI.deleteTodo(todos[i].id);
+	}
+}
+
+beforeEach(deleteAllTodos);
+afterAll(deleteAllTodos);
 
 describe("TodoAPI", () => {
 

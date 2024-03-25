@@ -1,9 +1,3 @@
 {
-  "todos": [
-    {
-      "title": "Jak e snel hest 🐴",
-      "completed": false,
-      "id": 1
-    }
-  ]
+  "todos": []
 }
