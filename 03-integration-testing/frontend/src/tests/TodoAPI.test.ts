@@ -85,7 +85,19 @@ describe("TodoAPI", () => {
 		expect(todos).toContainEqual(createdTodo);
 	});
 
-	it.todo("should create and then update the todo");
+	it("should create and then update the todo", async () => {
+		const todo = await TodoAPI.createTodo(newTodo);
+
+		const updatedTodo = await TodoAPI.updateTodo(todo.id, {
+			completed: !todo.completed,
+		});
+
+		expect(updatedTodo).toMatchObject({
+			id: todo.id,
+			title: todo.title,
+			completed: !todo.completed,
+		});
+	});
 
 	it.todo("should create and then delete the todo and verify that the todo actually was deleted");
 
