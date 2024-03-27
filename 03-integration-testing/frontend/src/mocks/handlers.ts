@@ -19,14 +19,21 @@ export const handlers = [
 
 	// Mock get single todo
 	// GET http://localhost:3001/todos/:todoId
-	http.get(BASE_URL + "/todos/:todoId", ({ request }) => {
+	http.get(BASE_URL + "/todos/:todoId", ({ params }) => {
 		// Get the todo ID from the request
+		const todoId = Number(params.todoId);
 
 		// Check if a todo with that ID exists
+		const todo = dummyTodos.find(todo => todo.id === todoId);
 
 		// If not, respond with empty object and HTTP 404 Not Found
+		if (!todo) {
+			// This is not the todo you are looking for
+			return HttpResponse.json({}, { status: 404 });
+		}
 
 		// Otherwise, respond with the todo with the corresponding ID
+		return HttpResponse.json(todo);
 	}),
 
 	// Mock create single todo

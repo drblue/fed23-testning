@@ -48,7 +48,7 @@ describe("TodoAPI", () => {
 		});
 	});
 
-	it.skip("should create and then get the todo", async () => {
+	it("should create and then get the todo", async () => {
 		// create a new todo
 		const createdTodo = await TodoAPI.createTodo(newTodo);
 
@@ -73,7 +73,7 @@ describe("TodoAPI", () => {
 		expect(todo).toStrictEqual(createdTodo);
 	});
 
-	it.skip("should create and then find the todo among all todos", async () => {
+	it("should create and then find the todo among all todos", async () => {
 		// create a new todo
 		const createdTodo = await TodoAPI.createTodo(newTodo);
 
