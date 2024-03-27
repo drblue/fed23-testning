@@ -9,6 +9,7 @@ const dummyTodos: Todo[] = [
 ];
 
 type CreateTodoRequestBody = TodoData;
+type UpdateTodoRequestBody = Partial<TodoData>;
 
 export const handlers = [
 	// Mock get all todos
@@ -62,6 +63,29 @@ export const handlers = [
 
 	// Mock update todo
 	// PATCH http://localhost:3001/todos/:todoId
+	http.patch<PathParams, UpdateTodoRequestBody>(BASE_URL + "/todos/:todoId", async ({ params, request }) => {
+		// Get the todo ID from the request
+		const todoId = Number(params.todoId);
+
+		// Get PATCH body
+		const payload = await request.json();
+
+		// Check if a todo with that ID exists
+		const todo = dummyTodos.find(todo => todo.id === todoId);
+
+		// If not, respond with empty object and HTTP 404 Not Found
+		if (!todo) {
+			// This is not the todo you are looking for
+			return HttpResponse.json({}, { status: 404 });
+		}
+
+		// Update todo with payload
+		// todo.title = payload.title ? payload.title : todo.title;
+		todo.title = payload.title ?? todo.title;
+		todo.completed = payload.completed ?? todo.completed;
+
+		return HttpResponse.json(todo);
+	}),
 
 	// Mock delete todo
 	// DELETE http://localhost:3001/todos/:todoId
