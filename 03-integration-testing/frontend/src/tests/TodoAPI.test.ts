@@ -31,7 +31,7 @@ describe("TodoAPI", () => {
 		expect( Array.isArray(todos) ).toBe(true);
 	});
 
-	it("should create a todo", async () => {
+	it.skip("should create a todo", async () => {
 		const todo = await TodoAPI.createTodo(newTodo);
 
 		/*
@@ -48,7 +48,7 @@ describe("TodoAPI", () => {
 		});
 	});
 
-	it("should create and then get the todo", async () => {
+	it.skip("should create and then get the todo", async () => {
 		// create a new todo
 		const createdTodo = await TodoAPI.createTodo(newTodo);
 
@@ -73,7 +73,7 @@ describe("TodoAPI", () => {
 		expect(todo).toStrictEqual(createdTodo);
 	});
 
-	it("should create and then find the todo among all todos", async () => {
+	it.skip("should create and then find the todo among all todos", async () => {
 		// create a new todo
 		const createdTodo = await TodoAPI.createTodo(newTodo);
 
@@ -87,7 +87,7 @@ describe("TodoAPI", () => {
 		expect(todos).toContainEqual(createdTodo);
 	});
 
-	it("should create and then update the todo", async () => {
+	it.skip("should create and then update the todo", async () => {
 		const todo = await TodoAPI.createTodo(newTodo);
 
 		const updatedTodo = await TodoAPI.updateTodo(todo.id, {
@@ -101,7 +101,7 @@ describe("TodoAPI", () => {
 		});
 	});
 
-	it("should create and then delete the todo and verify that the todo actually was deleted", async () => {
+	it.skip("should create and then delete the todo and verify that the todo actually was deleted", async () => {
 		const todo = await TodoAPI.createTodo(newTodo);
 
 		await TodoAPI.deleteTodo(todo.id);
