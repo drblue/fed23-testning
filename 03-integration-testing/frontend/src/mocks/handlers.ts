@@ -19,6 +19,15 @@ export const handlers = [
 
 	// Mock get single todo
 	// GET http://localhost:3001/todos/:todoId
+	http.get(BASE_URL + "/todos/:todoId", ({ request }) => {
+		// Get the todo ID from the request
+
+		// Check if a todo with that ID exists
+
+		// If not, respond with empty object and HTTP 404 Not Found
+
+		// Otherwise, respond with the todo with the corresponding ID
+	}),
 
 	// Mock create single todo
 	// POST http://localhost:3001/todos
