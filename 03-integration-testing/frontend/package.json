@@ -18,6 +18,7 @@
     "@vitest/ui": "^1.4.0",
     "domexception": "^4.0.0",
     "happy-dom": "^14.3.6",
+    "msw": "^2.2.12",
     "typescript": "^5.4.3",
     "vite": "^5.2.6",
     "vitest": "^1.4.0"

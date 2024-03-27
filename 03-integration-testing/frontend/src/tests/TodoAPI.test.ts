@@ -1,25 +1,27 @@
-import { describe, it, expect, beforeEach, afterAll } from "vitest";
+import { describe, it, expect, beforeAll, afterAll, afterEach } from "vitest";
+import { server } from "../mocks/server";
 import * as TodoAPI from "../services/TodoAPI";
 import { TodoData } from "../types/Todo";
+
+// 👂🏻 Before all tests, start listening for requests
+beforeAll(() => {
+	server.listen();
+});
+
+// 🧨 Reset handlers
+afterEach(() => {
+	server.resetHandlers();
+});
+
+// 🙉 After all tests, stop listening
+afterAll(() => {
+	server.close();
+});
 
 const newTodo: TodoData = {
 	title: "Test todo",
 	completed: false,
 }
-
-// Misa good cleaner 🧹
-const deleteAllTodos = async () => {
-	// get all todos and then delete them one by one 😩
-	const todos = await TodoAPI.getTodos();
-
-	// delete them one by one
-	for (let i = 0; i < todos.length; i++) {
-		await TodoAPI.deleteTodo(todos[i].id);
-	}
-}
-
-beforeEach(deleteAllTodos);
-afterAll(deleteAllTodos);
 
 describe("TodoAPI", () => {
 
