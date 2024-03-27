@@ -89,4 +89,22 @@ export const handlers = [
 
 	// Mock delete todo
 	// DELETE http://localhost:3001/todos/:todoId
+	http.delete(BASE_URL + "/todos/:todoId", ({ params }) => {
+		// Get the todo ID from the request
+		const todoId = Number(params.todoId);
+
+		// Check if a todo with that ID exists
+		const todoIndex = dummyTodos.findIndex(todo => todo.id === todoId);
+
+		// If not, respond with empty object and HTTP 404 Not Found
+		if (todoIndex === -1) {
+			// This is not the todo you are looking for
+			return HttpResponse.json({}, { status: 404 });
+		}
+
+		// Remove todo from the dummyTodos array
+		dummyTodos.splice(todoIndex, 1);
+
+		return HttpResponse.json({});
+	}),
 ];
