@@ -7,7 +7,7 @@ describe("Newsletter Subscribe", () => {
 
 	beforeEach(() => {
 		// Visit page
-		cy.visit("http://localhost:3000");
+		cy.visit("/");
 
 		// Wait for the app to be fully hydrated and visible
 		cy.get("#__next").should("be.visible");
