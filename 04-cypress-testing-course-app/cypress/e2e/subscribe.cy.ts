@@ -1,4 +1,4 @@
-describe("template spec", () => {
+describe("Newsletter Subscribe", () => {
 	beforeEach(() => {
 		// Visit page
 		cy.visit("http://localhost:3000");
@@ -8,15 +8,15 @@ describe("template spec", () => {
 	});
 
 	it("allows users to subscribe to the email list", () => {
-		cy.get('[data-test="email-input"]')
+		cy.getByDataTest("email-input")
 			.should("be.visible")
 			.type("pelle@svanslos.nu");
 
-		cy.get('[data-test="submit-button"]').click();
+		cy.getByDataTest("submit-button").click();
 
 		// API-request
 
-		cy.get('[data-test="success-message"]')
+		cy.getByDataTest("success-message")
 			.should("exist")
 			.contains("pelle@svanslos.nu");
 	});
