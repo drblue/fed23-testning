@@ -27,4 +27,16 @@ describe("Home Page", () => {
 			cy.get("dt").eq(2).contains("Free and Open Source");
 		});
 	});
+
+	context("Courses section", () => {
+		it.only("can navigate to the first course page", () => {
+			cy.getByDataTest("course-0")
+				.find("a")
+				.eq(-1)
+				.click();
+
+			cy.location("pathname")
+				.should("equal", "/testing-your-first-application");
+		});
+	});
 });
