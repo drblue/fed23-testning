@@ -13,10 +13,18 @@ describe("Newsletter Subscribe", () => {
 		cy.get("#__next").should("be.visible");
 	});
 
-	it("allows users to subscribe to the email list", () => {
-		cy.getByDataTest("email-input").should("be.visible").type(email);
+	it("allows users to subscribe to the email list by clicking Subscribe", () => {
+		cy.getByDataTest("email-input").should("be.visible").type(email, { delay: 100 });
 
 		cy.getByDataTest("submit-button").click();
+
+		// API-request
+
+		cy.getByDataTest("success-message").should("exist").contains(email);
+	});
+
+	it("allows users to subscribe to the email list by pressing enter", () => {
+		cy.getByDataTest("email-input").should("be.visible").type(email).type("{enter}");
 
 		// API-request
 
