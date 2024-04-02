@@ -18,7 +18,7 @@ describe("Todos", () => {
 			cy.get('#error').should("be.visible").contains("Title cannot be empty");
 		});
 
-		it.only(
+		it(
 			"can create a new todo (and see it in the list and clears input)",
 			{ defaultCommandTimeout: 6000 },  // wait **up to** 6000 ms when looking for an element
 			() => {
@@ -38,6 +38,10 @@ describe("Todos", () => {
 			}
 		);
 
-		it.skip("can type in the create todo form and then reset the form");
+		it("can type in the create todo form and then reset the form", () => {
+			cy.get("#new-todo-title").type("My ephemeral todo");
+			cy.get("[type=\"reset\"]").click();
+			cy.get("#new-todo-title").should("have.value", "");
+		});
 	});
 });
