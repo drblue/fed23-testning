@@ -3,8 +3,14 @@ describe("Todos", () => {
 		cy.visit("/");
 	});
 
-	it.skip("should see at least one todo", () => {
-		cy.get("#todos").find("li").should("have.length.at.least", 1);
+	context("inital state", () => {
+		it("should see at least one todo", () => {
+			cy.get("#todos").find("li").should("have.length.at.least", 1);
+		});
+
+		it("should not show the error dialog", () => {
+			cy.get("#error").should("not.be.visible");
+		});
 	});
 
 	context("create todo", () => {
