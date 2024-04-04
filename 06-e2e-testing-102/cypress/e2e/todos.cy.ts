@@ -60,5 +60,14 @@ describe("Firebase Todos", () => {
 					cy.location("pathname").should("eq", "/todos/" + todoId);
 				});
 		});
+
+		it("all todos should have a title", () => {
+			cy.visit("/todos");
+
+			cy.get(".todo-list-item .todo-title")
+				.each(($el) => {
+					cy.wrap($el).should("not.be.empty");
+				});
+		});
 	});
 });
