@@ -15,18 +15,20 @@ describe("Firebase Todos", () => {
 
 	context("can log in", () => {
 		beforeEach(() => {
-			cy.visit("/login");
+			cy.login(snelhest.email, snelhest.password);   // so nice 🤩
 		});
 
 		afterEach(() => {
-			cy.visit("/logout");
-			cy.wait(1500);
+			cy.logout();
 		});
 
 		it("should log in with an existing user", () => {
-			cy.login(snelhest.email, snelhest.password);   // so nice 🤩
-
 			cy.location("pathname").should("eq", "/");
+		});
+
+		it("should log in with an existing user and visit todos page", () => {
+			cy.visit("/todos");
+			cy.location("pathname").should("eq", "/todos");
 		});
 	});
 });

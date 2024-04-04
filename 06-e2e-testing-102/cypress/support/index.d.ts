@@ -8,5 +8,12 @@ declare namespace Cypress {
 		 * @example cy.login("snelhest2000@gmail.com", "hö nom-nom")
 		 */
 		login(email: string, password: string): Chainable<JQuery<HTMLElement>>
+
+		/**
+		 * Custom command to log out a user.
+		 *
+		 * @example cy.logout()
+		 */
+		logout(): Chainable<JQuery<HTMLElement>>
 	}
 }
