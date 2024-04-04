@@ -24,12 +24,7 @@ describe("Firebase Todos", () => {
 		});
 
 		it("should log in with an existing user", () => {
-			cy.get("input[type=\"email\"]").type(snelhest.email, { delay: 10 });
-			cy.get("input[type=\"password\"]").type(snelhest.password);
-			cy.get("[type=\"submit\"]").click();
-			cy.wait(1000);
-
-			// cy.login(snelhest.email, snelhest.password);   // wouldn't it be nice
+			cy.login(snelhest.email, snelhest.password);   // so nice 🤩
 
 			cy.location("pathname").should("eq", "/");
 		});
